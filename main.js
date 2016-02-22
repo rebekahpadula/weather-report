@@ -9,9 +9,16 @@ function weatherInfo (item) {
 	console.log('Wind: ' + item.wind.speed +' MPH ' + item.wind.deg);
 	console.log('======================');
  }
+data.list.sort(function (a, b){
+	if (a.name > b.name) {
+		return +1
+	} else if (a.name < b.name) {
+	  	return -1 
+	}	else {
+		return 0
+	}
+})
 data.list.forEach(weatherInfo)
-data.list.sort()
-
 
 //average temperature
 // find average temp 
