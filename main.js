@@ -1,14 +1,21 @@
 var data = require('./data.js');
 
+//kelvin to fahrenheit converter
+function tempConvert (temp) {
+	return Math.ceil ((temp - 273.15 ) * 1.8 + 32);
+};
+
 function weatherInfo (item) {
- 	console.log(item.name + ' ====================');
+ 	console.log(item.name + ' =======');
 	console.log(item.weather[0].description + '.');
-	console.log('Temp: ' + item.main.temp);
-	console.log('Lo: ' + item.main.temp_min + ', ' + 'Hi: ' + item.main.temp_max); 
+	console.log('Temp: ' + tempConvert(item.main.temp));
+	console.log('Lo: ' + tempConvert(item.main.temp_min) + ', ' + 'Hi: ' + tempConvert(item.main.temp_max)); 
 	console.log('Humidity: ' + item.main.humidity + '%');
-	console.log('Wind: ' + item.wind.speed +' MPH ' + item.wind.deg);
+    console.log('Wind: ' + item.wind.speed +' MPH ' + item.wind.deg);
 	console.log('======================');
  }
+
+
 data.list.sort(function (a, b){
 	if (a.name > b.name) {
 		return +1
@@ -17,11 +24,12 @@ data.list.sort(function (a, b){
 	}	else {
 		return 0
 	}
-})
-data.list.forEach(weatherInfo)
+});
+data.list.forEach(weatherInfo);
 
 //average temperature
 // find average temp 
+function averages () {
 var totalTemp = data.list.reduce(function (a, x) {
     return a + x.main.temp 
 }, 0);
@@ -61,20 +69,10 @@ var totalTemp = data.list.reduce(function (a, x) {
 
 console.log(totalTemp / data.list.length)
 
-
-
-
-
-
-
-
-
-
-
-//kelvin to fahrenheit converter
-function tempConvert () {
-
 }
+
+
+
 
 
 
